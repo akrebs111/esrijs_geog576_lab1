@@ -17,8 +17,9 @@
     "esri/config", 
       "esri/Map", 
       "esri/views/MapView",
-      "esri/widgets/BasemapGallery"
-  ], function(esriConfig, Map, MapView, BasemapGallery) {  
+      "esri/widgets/BasemapGallery",
+      "esri/widgets/Expand"
+  ], function(esriConfig, Map, MapView, BasemapGallery, Expand) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -34,6 +35,11 @@
       const basemapGallery = new BasemapGallery ({
         view: view,
         container: "basemapGalleryDiv"
+      });
+      const expandbasemapGallery = new Expand({
+        view:view,
+        content: basemapGallery,
+        expanded: false
       });
       view.ui.add(basemapGallery, {
         position: "top-right"
@@ -67,6 +73,5 @@
 <body>
   <!-- div to display the map-->
    <div id="viewDiv"></div>
-   <div id="basemapGalleryDiv"></div>
 </body>
 </html>
