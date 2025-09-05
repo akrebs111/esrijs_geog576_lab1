@@ -19,8 +19,9 @@
       "esri/views/MapView",
       "esri/widgets/BasemapGallery",
       "esri/widgets/Expand",
-      "esri/widgets/Locate"
-  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate) {  
+      "esri/widgets/Locate",
+      "esri/widgets/Search"
+  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -48,6 +49,14 @@
       });
 
       view.ui.add(locateWidget, "bottom-left");
+
+      const searchWidget = new Search ({
+        view: view});
+      
+        view.ui.add(searchWidget, {
+          position: "top-left",
+          index: 2
+        });
   });
 </script>
 
