@@ -30,7 +30,7 @@
 
       const view = new MapView({
           map: map,
-          center: [-89.0275, 42.6821], // center on Janesville, WI
+          center: [-89.0275, 42.6821], // center on Janesville, 
           zoom: 12, 
           container: "viewDiv" 
         });
@@ -59,11 +59,11 @@
       });
 
       view.ui.add(searchWidget, {
-        position: "bottom-right",
+        position: "bottom-left",
       });
 
       view.ui.add(locateWidget, {
-        position: "bottom-left",
+        position: "top-left",
       });
   });
 </script>
