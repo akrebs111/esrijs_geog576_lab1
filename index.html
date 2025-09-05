@@ -16,8 +16,9 @@
   require([
     "esri/config", 
       "esri/Map", 
-      "esri/views/MapView"
-  ], function(esriConfig, Map, MapView, BasemapGallery, Expand) {  
+      "esri/views/MapView",
+      "esri/widgets/BasemapGallery"
+  ], function(esriConfig, Map, MapView, BasemapGallery) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -30,9 +31,10 @@
           zoom: 12, // Zoom level
           container: "viewDiv" // Div element
         });
-      const BasemapGallery = new BasemapGallery ({
+      const basemapGallery = new BasemapGallery ({
         view: view,
         container: basemapGalleryDiv
+      
       });
     });
 </script>
@@ -46,7 +48,18 @@
       margin: 0;
       height: 100%;
       width: 100%;  
-    }  
+    } 
+     #basemapGalleryDiv {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 99;
+      background-color: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      width: 200px;
+     }
   </style> 
 </head>
 <body>
