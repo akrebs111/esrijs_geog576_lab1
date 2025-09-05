@@ -20,8 +20,9 @@
       "esri/widgets/BasemapGallery",
       "esri/widgets/Expand",
       "esri/widgets/Locate",
-      "esri/widgets/Search"
-  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search) {  
+      "esri/widgets/Search",
+      "esri/widgets/Zoom"
+  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Zoom) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -32,7 +33,10 @@
           map: map,
           center: [-89.0275, 42.6821], // Longitude, latitude
           zoom: 12, // Zoom level
-          container: "viewDiv" // Div element
+          container: "viewDiv", // Div element
+          ui: {
+            components: []
+          }
         });
       const basemapGallery = new BasemapGallery ({
         view: view
@@ -49,19 +53,24 @@
 
       const searchWidget = new Search ({
         view: view});
-      
-      // Create a container div for stacking widgets
+
+      const zoomWidget = new Zoom({
+        view: view
+      });
+
+  // Create container div for stacking all widgets vertically
       const widgetContainer = document.createElement("div");
       widgetContainer.classList.add("widget-container");
 
-      // Append widgets' DOM nodes to container
+      // Append all widgets' domNodes into container
       widgetContainer.appendChild(expandBasemapGallery.domNode);
       widgetContainer.appendChild(searchWidget.domNode);
       widgetContainer.appendChild(locateWidget.domNode);
+      widgetContainer.appendChild(zoomWidget.domNode);
 
-      // Add the container as a single UI element in top-left corner
+      // Add container as a single widget to top-left
       view.ui.add(widgetContainer, "top-left");
-  });
+    });
 </script>
 
 <!-- css to make full screen map-->
@@ -78,7 +87,6 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      /* Optional styling */
       background-color: white;
       padding: 8px;
       border-radius: 4px;
@@ -91,3 +99,5 @@
    <div id="viewDiv"></div>
 </body>
 </html>
+
+
