@@ -17,7 +17,7 @@
     "esri/config", 
       "esri/Map", 
       "esri/views/MapView"
-  ], function(esriConfig, Map, MapView) {  
+  ], function(esriConfig, Map, MapView, BasemapGallery, Expand) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -27,9 +27,12 @@
       const view = new MapView({
           map: map,
           center: [-89.0275, 42.6821], // Longitude, latitude
-          zoom: 13, // Zoom level
+          zoom: 12, // Zoom level
           container: "viewDiv" // Div element
         });
+      const BasemapGallery = new BasemapGallery ({
+        view: view
+      });
     });
 </script>
 
