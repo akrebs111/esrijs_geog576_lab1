@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
 <script src="https://js.arcgis.com/4.25/"></script>
 
-<!-- add modules neeeded for full screen map app-->
+<!--modules for widgets-->
 <script>
 
   require([
@@ -30,10 +30,12 @@
 
       const view = new MapView({
           map: map,
-          center: [-89.0275, 42.6821], // Longitude, latitude
-          zoom: 12, // Zoom level
-          container: "viewDiv" // Div element
+          center: [-89.0275, 42.6821], // center on Janesville, WI
+          zoom: 12, 
+          container: "viewDiv" 
         });
+      
+      //add widgets
       const basemapGallery = new BasemapGallery ({
         view: view
       });
@@ -49,6 +51,8 @@
 
       const searchWidget = new Search ({
         view: view});
+      
+      //widget placement
       
       view.ui.add(expandBasemapGallery, {
         position: "top-left",
