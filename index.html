@@ -50,20 +50,17 @@
       const searchWidget = new Search ({
         view: view});
       
-      view.ui.add(expandBasemapGallery, {
-        position: "top-left",
-        index: 0
-      });
+      // Create a container div for stacking widgets
+      const widgetContainer = document.createElement("div");
+      widgetContainer.classList.add("widget-container");
 
-      view.ui.add(searchWidget, {
-        position: "top-left",
-        index: 1
-      });
+      // Append widgets' DOM nodes to container
+      widgetContainer.appendChild(expandBasemapGallery.domNode);
+      widgetContainer.appendChild(searchWidget.domNode);
+      widgetContainer.appendChild(locateWidget.domNode);
 
-      view.ui.add(locateWidget, {
-        position: "top-left",
-        index: 2
-      });
+      // Add the container as a single UI element in top-left corner
+      view.ui.add(widgetContainer, "top-left");
   });
 </script>
 
