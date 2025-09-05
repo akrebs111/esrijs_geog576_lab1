@@ -20,9 +20,8 @@
       "esri/widgets/BasemapGallery",
       "esri/widgets/Expand",
       "esri/widgets/Locate",
-      "esri/widgets/Search",
-      "esri/widgets/Zoom"
-  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search, Zoom) {  
+      "esri/widgets/Search"
+  ], function(esriConfig, Map, MapView, BasemapGallery, Expand, Locate, Search) {  
       
     esriConfig.apiKey = "AAPTxy8BH1VEsoebNVZXo8HurGfXZVUftvXPbMTy0-GRI5ojxO2vkMfNJUc6LuBspKHa7_8adflxgEqdwsbZT_y64VwrYucfHRmak8KqEqK9KojibVke2tZigq1P4aWdi2ARSVyPCfBRuJPzRCNXkKqmMNKADPP407Mua44OxDb8aE4N4-3Rp6rAphNctReWb-FZ2fqziGxRK72mw3mmQSZtV-5YfnA0EHXD4rWw1OwRwQU-VcnibfCw_FYsDSK_eK6lAT1_77qtARkK"
     const map = new Map({
@@ -33,10 +32,7 @@
           map: map,
           center: [-89.0275, 42.6821], // Longitude, latitude
           zoom: 12, // Zoom level
-          container: "viewDiv", // Div element
-          ui: {
-            components: []
-          }
+          container: "viewDiv" // Div element
         });
       const basemapGallery = new BasemapGallery ({
         view: view
@@ -53,24 +49,22 @@
 
       const searchWidget = new Search ({
         view: view});
-
-      const zoomWidget = new Zoom({
-        view: view
+      
+      view.ui.add(expandBasemapGallery, {
+        position: "top-left",
+        index: 0
       });
 
-  // Create container div for stacking all widgets vertically
-      const widgetContainer = document.createElement("div");
-      widgetContainer.classList.add("widget-container");
+      view.ui.add(searchWidget, {
+        position: "bottom-right",
+        index: 1
+      });
 
-      // Append all widgets' domNodes into container
-      widgetContainer.appendChild(expandBasemapGallery.domNode);
-      widgetContainer.appendChild(searchWidget.domNode);
-      widgetContainer.appendChild(locateWidget.domNode);
-      widgetContainer.appendChild(zoomWidget.domNode);
-
-      // Add container as a single widget to top-left
-      view.ui.add(widgetContainer, "top-left");
-    });
+      view.ui.add(locateWidget, {
+        position: "bottom-left",
+        index: 2
+      });
+  });
 </script>
 
 <!-- css to make full screen map-->
@@ -83,15 +77,20 @@
       height: 100%;
       width: 100%;  
     } 
-    .widget-container {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+     #basemapGalleryDiv {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 99;
       background-color: white;
-      padding: 8px;
+      padding: 10px;
       border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      width: 200px;
+     }
+    .esri-widget {
+    margin-bottom: 8px;
+  }
   </style> 
 </head>
 <body>
@@ -99,5 +98,3 @@
    <div id="viewDiv"></div>
 </body>
 </html>
-
-
